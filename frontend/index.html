@@ -73,6 +73,32 @@
         <h3> Budget / Day </h3>
         <p> $0 </p>
     </section>
+
+    <section id = "input-section">
+        <h2> Daily input </h2>
+        <div id = "current-date"></div>
+        <!-- <select multiple>
+            <option> Non-mealprep Food </option>
+            <option> Amazon </option>
+            <option> Non-Amazon DTC </option>
+            <option> Retail </option>
+            <option> Travel </option>
+            <option> Other </option>  
+        </select> -->
+        <div class="dropdown">
+            <div class="dropdown-content">
+                <label><input type="checkbox" value="Non-mealprep Food"> Non-mealprep Food</label>
+                <label><input type="checkbox" value="Amazon"> Amazon</label>
+                <label><input type="checkbox" value="Non-Amazon DTC"> Non-Amazon DTC</label>
+                <label><input type="checkbox" value="Retail"> Retail</label>
+                <label><input type="checkbox" value="Travel"> Travel</label>
+                <label><input type="checkbox" value="Other"> Other</label>
+            </div>
+        </div>
+        <input type = "number" placeholder="Amount" min = "0"> 
+        <button> Submit </button>
+    </section>
+
     <section id = "monthly-chart">
         <table>
             <tr> <th> Date </th>
