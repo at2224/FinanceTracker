@@ -1,3 +1,52 @@
-h1 {
+body {
+    background-color: #131720;
+    font-family: sans-serif;
+    color: white
+}
+
+.top-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     
+}
+.top-table tr {
+    color: black;
+}
+.top-table th  {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+
+.top-table th,
+.top-table td {
+    padding: 12px 15px;
+}
+
+.top-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.top-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.top-table tbody tr:nth-of-type(odd) {
+    background-color: #dbcfcf;
+}
+
+.top-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+.top-table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
+
+#expense-table {
+    float: top right;
 }
