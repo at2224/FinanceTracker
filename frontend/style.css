@@ -1,16 +1,23 @@
 body {
     background-color: #131720;
     font-family: sans-serif;
-    color: white
+    color: white;
+    margin-left: 4.5%;
 }
-
+.table-container {
+    display: flex;
+    /* justify-content: center; */
+    align-items: flex-start;
+    gap: 10px;
+    margin: 25px 0;
+    
+}
 .top-table {
     border-collapse: collapse;
     margin: 25px 0;
-    font-size: 0.9em;
-    min-width: 400px;
+    font-size: 0.7em;
+    min-width: 225px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-    
 }
 .top-table tr {
     color: black;
@@ -23,7 +30,7 @@ body {
 
 .top-table th,
 .top-table td {
-    padding: 12px 15px;
+    padding: 5px;
 }
 
 .top-table tbody tr {
@@ -47,6 +54,11 @@ body {
     color: #009879;
 }
 
-#expense-table {
-    float: top right;
+.amount-col {
+    width: 10px;
+    white-space: nowrap;
+}
+
+.top-table td input {
+    max-width: 80px; 
 }
