@@ -8,7 +8,6 @@ body {
     display: flex;
     /* justify-content: center; */
     align-items: flex-start;
-    gap: 10px;
     margin: 25px 0;
     
 }
@@ -18,6 +17,7 @@ body {
     font-size: 0.7em;
     min-width: 225px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    margin-bottom: 10px;
 }
 .top-table tr {
     color: black;
@@ -61,4 +61,32 @@ body {
 
 .top-table td input {
     max-width: 80px; 
+}
+
+#budget {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 450px;
+    height: 100px;
+    background-color: #77e6a7;
+    color: black;
+
+}
+
+.budget-metric {
+    display: flex;
+    align-items: center;
+}
+
+.budget-metric p {
+    margin-left: 10px;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.budget-metric h3, .budget-metric p {
+    margin: 0;
+    line-height: 2;
+    margin-top: 5px;
 }
