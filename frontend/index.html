@@ -91,20 +91,15 @@
     
 
     <section id = "input-section">
-        <div class = "input header">
+        <div class = "input-header">
             <h2> Daily input </h2>
-            <div id = "current-date"> [Current Date] </div>
+            <div id = "current-date"> 
+                <p>MM/DD/YYYY</p>
+            </div>
         </div>
-        <!-- <select multiple>
-            <option> Non-mealprep Food </option>
-            <option> Amazon </option>
-            <option> Non-Amazon DTC </option>
-            <option> Retail </option>
-            <option> Travel </option>
-            <option> Other </option>  
-        </select> -->
         <div class="input-content">
             <div class="dropdown">
+                <button class="dropdown-button">Select Categories</button>
                 <div class="dropdown-content">
                     <label><input type="checkbox" value="Non-mealprep Food"> Non-mealprep Food</label>
                     <label><input type="checkbox" value="Amazon"> Amazon</label>
@@ -114,7 +109,7 @@
                     <label><input type="checkbox" value="Other"> Other</label>
                 </div>
             </div>
-            <input type = "number" placeholder="Amount" min = "0"> 
+            <input id = "daily-input-amount" type = "number" placeholder="Amount" min = "0"> 
         </div>
         
         <button> Submit </button>
