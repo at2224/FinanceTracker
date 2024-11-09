@@ -20,7 +20,7 @@ body {
     margin-bottom: 10px;
 }
 .top-table tr {
-    color: black;
+    color: white;
 }
 .top-table th  {
     background-color: #009879;
@@ -38,11 +38,11 @@ body {
 }
 
 .top-table tbody tr:nth-of-type(even) {
-    background-color: #f3f3f3;
+    background-color: #333841;
 }
 
 .top-table tbody tr:nth-of-type(odd) {
-    background-color: #dbcfcf;
+    background-color: #2c2f38;
 }
 
 .top-table tbody tr:last-of-type {
@@ -63,6 +63,12 @@ body {
     max-width: 80px; 
 }
 
+input[type="number"] {
+    background-color: #2c2f38; /* Dark background for input */
+    color: #ffffff; /* White text color for contrast */
+    border: 1px solid #3a3f47;
+}
+
 #budget {
     display: flex;
     flex-direction: column;
@@ -71,6 +77,7 @@ body {
     height: 100px;
     background-color: #77e6a7;
     color: black;
+    margin-bottom: 30px;
 
 }
 
