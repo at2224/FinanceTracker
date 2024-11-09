@@ -172,30 +172,28 @@ button {
 #input-section {
     display: flex;
     flex-direction: column;
-    align-items: center;       /* Center everything horizontally */
+    align-items: center; 
     padding: 20px;
     background-color: #2c2f38;
     border-radius: 8px;
     width: 500px;
-    margin: 0 auto;            /* Center the entire input section on the page */
+    justify-content: center; 
 }
-
 .input-header {
     display: flex;
     align-items: center;
-    justify-content: center;   /* Center header items */
+    justify-content: center;  
     width: 100%;
-    gap: 10px;                 /* Small gap between "Daily Input" and date */
-    margin-bottom: 20px;       /* Space between header and content */
+    gap: 10px;                 
+    margin-bottom: 20px;       
 }
 
 .input-content {
     display: flex;
-    justify-content: center;   /* Center categories and amount input */
-    align-items: center;
-    gap: 20px;                 /* Space between dropdown and input */
+    justify-content: center;  
+    gap: 20px;                 
     width: 100%;
-    margin-bottom: 20px;       /* Space below input area */
+    margin-bottom: 20px;     
 }
 
 button {
