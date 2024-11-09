@@ -101,3 +101,9 @@ input[type="number"] {
 #input-section {
     display: flex;
 }
+
+button {
+    background-color: #1d2230;
+    color: white;
+    
+}
