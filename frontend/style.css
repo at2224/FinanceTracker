@@ -210,3 +210,59 @@ button {
     font-size: 1rem;
     border-radius: 5px;
 }
+
+#monthly-chart {
+    display: flex;
+    flex-direction: column;
+    background-color: #1d2230;
+    width: 75%;
+    border-radius: 8px;
+    padding: 20px;
+    color: white;
+    word-wrap: break-word;
+}
+
+#monthly-chart table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#monthly-chart th,
+#monthly-chart td {
+    padding: 10px;
+    text-align: left;
+    width: 80px;
+}
+
+#monthly-chart th  {
+    background-color: #009879;
+    color: #ffffff;
+}
+
+#monthly-chart td {
+    border-bottom: 1px solid #dddddd;
+}
+
+.expenses-dropdown {
+    position: relative;
+    display: inline-block;
+    background-color: #2c2f38;
+    color: white;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+.expenses-dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #2c2f38;
+    min-width: 150px;
+    border-radius: 4px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    padding-left: 5px;
+}
+
+.expenses-dropdown:hover .expenses-dropdown-content {
+    display: block;
+}

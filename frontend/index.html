@@ -115,18 +115,49 @@
         <button> Submit </button>
     </section>
 
-    <section id = "monthly-chart">
+    <section id="monthly-chart">
         <table>
-            <tr> <th> Date </th>
-                <th> Expenses </th>
-                <th> Amount </th>
-                <th> Budget Balance </th>
-            </tr>
+            <thead>
+                <tr> 
+                    <th>Date</th>
+                    <th>Expenses</th>
+                    <th>Amount</th>
+                    <th>Budget Balance</th>
+                </tr>
+            </thead>
+            <tbody id="monthly-table-body">
+                <!-- Placeholder rows -->
+                <tr>
+                    <td>11/1/24</td>
+                    <td>
+                        <div class="expenses-dropdown">
+                            <span>Expenses</span>
+                            <div class="expenses-dropdown-content">
+                                <!-- Example: each category added here -->
+                                <p>Non-mealprep Food</p>
+                                <p>Amazon</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="amount-cell">100</td>
+                    <td class="balance-cell">900</td>
+                </tr>
+                <tr>
+                    <td>11/2/24</td>
+                    <td>
+                        <div class="expenses-dropdown">
+                            <span>No expenses</span>
+                            <div class="expenses-dropdown-content"></div>
+                        </div>
+                    </td>
+                    <td class="amount-cell">0</td>
+                    <td class="balance-cell">900</td>
+                </tr>
+                <!-- Add more rows here as needed -->
+            </tbody>
         </table>
-        <tbody id = "monthly-table-body">
-            <!-- body-->
-        </tbody>
     </section>
+    
     <script src = "script.js"></script>
 </body>
 </html>
