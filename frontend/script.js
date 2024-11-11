@@ -3,6 +3,7 @@ const amountInputs = document.querySelectorAll('#expense-table input');
 const budgetmonthly = document.querySelectorAll('#Budgetpermonth');
 const budgetdaily = document.querySelectorAll('#Budgetperday');
 const salaryAmountCell = document.getElementById('salary');
+const budgetDailyElement = document.getElementById('Budgetperday');
 
 function saveValue(input) {
     localStorage.setItem(input.id, input.value);
@@ -65,6 +66,7 @@ function updateBudgetMonth() {
     const budgetMonthlyElement = document.getElementById('Budgetpermonth');
     budgetMonthlyElement.textContent = budgetmonthly.toFixed(2);
 
+    updateBudgetDay();
 }
 amountInputs.forEach(input => {
     input.addEventListener('input', updateBudgetMonth);  // Recalculate budget whenever an expense is changed
@@ -85,3 +87,18 @@ function getCurrentDate() {
 }
 
 document.getElementById('date-display').textContent = getCurrentDate();  
+
+//budget / day = budget / month /  (last day of month - first day of month + 1)
+
+function getDaysInMonth() {
+    var now = new Date();
+    return new Date(now.getFullYear(), now.getMonth()+1, 0).getDate()
+}
+
+function updateBudgetDay() {
+    const budgetMonthlyElement = document.getElementById('Budgetpermonth');
+    const budgetDailyElement = document.getElementById('Budgetperday');
+
+    let num = parseFloat(budgetMonthlyElement.innerHTML) / (getDaysInMonth() + 1);
+    budgetDailyElement.textContent = num.toFixed(2);
+}
