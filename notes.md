@@ -3,6 +3,7 @@ Brain dump
 Smaller changes:
 * Make daily input field centered on page?
 * Move top tables closer together?
+* Separate budget calc metrics more
 
 Medium changes: 
 * make expenses and budget info collapsable?
