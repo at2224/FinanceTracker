@@ -2,6 +2,7 @@ const input1 = document.querySelectorAll('.table-container input');
 const amountInputs = document.querySelectorAll('#expense-table input');
 const budgetmonthly = document.querySelectorAll('#Budgetpermonth');
 const budgetdaily = document.querySelectorAll('#Budgetperday');
+const salaryAmountCell = document.getElementById('salary');
 
 function saveValue(input) {
     localStorage.setItem(input.id, input.value);
@@ -34,6 +35,7 @@ function updateTotal() {
         }
     });
 
+
     const totalAmountCell = document.getElementById('total-amount');
     totalAmountCell.textContent = totalAmount.toFixed(2);
 }
@@ -45,20 +47,30 @@ amountInputs.forEach(input => {
 updateTotal();
 
 function updateBudgetMonth() {
-    const totalAmountCell = document.getElementById('total-amount');
-    const salaryAmountCell = document.getElementById('salary');
-    
-    const totalAmount = Number(totalAmountCell.value);  
+
+    let total = 0;
+
+    amountInputs.forEach(input => {
+        const value = parseFloat(input.value);
+        if (!isNaN(value)) {
+            total += value;
+        }
+    });  
+
     const salaryAmount = Number(salaryAmountCell.value);  
 
-    // Calculate the remaining budget per month
-    const budgetmonthly = salaryAmount - totalAmount;
+    const budgetmonthly = salaryAmount - total;
 
     // Update the displayed budget per month
     const budgetMonthlyElement = document.getElementById('Budgetpermonth');
     budgetMonthlyElement.textContent = budgetmonthly.toFixed(2);
 
 }
+amountInputs.forEach(input => {
+    input.addEventListener('input', updateBudgetMonth);  // Recalculate budget whenever an expense is changed
+});
+
+salaryAmountCell.addEventListener('input', updateBudgetMonth);  // Recalculate budget whenever salary changes
 
 updateBudgetMonth();
 
