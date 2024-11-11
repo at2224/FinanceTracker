@@ -84,4 +84,4 @@ function getCurrentDate() {
     return `${month}/${day}/${year}`;  
 }
 
-getCurrentDate();  
+document.getElementById('date-display').textContent = getCurrentDate();  
