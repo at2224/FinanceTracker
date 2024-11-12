@@ -4,6 +4,9 @@ const budgetmonthly = document.querySelectorAll('#Budgetpermonth');
 const budgetdaily = document.querySelectorAll('#Budgetperday');
 const salaryAmountCell = document.getElementById('salary');
 const budgetDailyElement = document.getElementById('Budgetperday');
+const dropdownButton = document.querySelector('.dropdown-button');
+const dropdownContent = document.querySelector('.dropdown-content');
+
 
 function saveValue(input) {
     localStorage.setItem(input.id, input.value);
@@ -102,3 +105,14 @@ function updateBudgetDay() {
     let num = parseFloat(budgetMonthlyElement.innerHTML) / (getDaysInMonth() + 1);
     budgetDailyElement.textContent = num.toFixed(2);
 }
+
+dropdownButton.addEventListener('click', () => {
+    if (dropdownContent.style.display === "block") {
+        dropdownContent.style.display = "none"
+    }
+    else {
+        dropdownContent.style.display = "block";
+    }
+});
+
+

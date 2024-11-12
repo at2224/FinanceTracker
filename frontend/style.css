@@ -165,9 +165,9 @@ button {
     margin-right: 8px;
 }
 
-.dropdown.show .dropdown-content {
-    display: block;
-}
+/* .dropdown.show .dropdown-content {
+    display: block !important;
+} */
 
 #input-section {
     display: flex;
