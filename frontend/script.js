@@ -6,7 +6,11 @@ const salaryAmountCell = document.getElementById('salary');
 const budgetDailyElement = document.getElementById('Budgetperday');
 const dropdownButton = document.querySelector('.dropdown-button');
 const dropdownContent = document.querySelector('.dropdown-content');
-
+const submitButton = document.querySelector('#input-section button');
+const dateDisplay = document.getElementById('date-display');
+const dailyInputAmount = document.getElementById('daily-input-amount');
+const monthlyTableBody = document.getElementById('monthly-table-body');
+const expenseCheckboxes = document.querySelectorAll('.dropdown-content input[type="checkbox"]');
 
 function saveValue(input) {
     localStorage.setItem(input.id, input.value);
@@ -115,4 +119,21 @@ dropdownButton.addEventListener('click', () => {
     }
 });
 
+submitButton.addEventListener('click', () => {
+    
+    if (dailyInputAmount === 0 || !Array.from(expenseCheckboxes).some(checkbox => checkbox.checked)) {
+        return; 
+    }
+    else {
+        const currentDate = getCurrentDate();
 
+        const selectedExpenses = Array.from(expenseCheckboxes)
+        .filter(checkbox => checkbox.checked)
+        .map(checkbox => checkbox.value);
+
+        const amount = parseFloat(dailyInputAmount.value) || 0;
+        
+    }
+    
+
+})
