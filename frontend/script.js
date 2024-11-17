@@ -119,12 +119,16 @@ dropdownButton.addEventListener('click', () => {
     }
 });
 
+// when submit button is pressed...
 submitButton.addEventListener('click', () => {
-    
-    if (dailyInputAmount === 0 || !Array.from(expenseCheckboxes).some(checkbox => checkbox.checked)) {
+    // only submit if a value has been entered
+    if (dailyInputAmount === 0 || !Array.from(expenseCheckboxes).some(checkbox => checkbox.checked)
+    ) {
+        //stop function
         return; 
     }
     else {
+        // get categories and amount
         const currentDate = getCurrentDate();
 
         const selectedExpenses = Array.from(expenseCheckboxes)
@@ -133,6 +137,23 @@ submitButton.addEventListener('click', () => {
 
         const amount = parseFloat(dailyInputAmount.value) || 0;
         
+        // create Date in monthly chart
+        const newRow = document.createElement('tr');
+        const dateCell = document.createElement('td');
+        dateCell.textContent = currentDate;
+        newRow.appendChild(dateCell);
+
+        // create Expense in monthly chart
+        const expensesCell = document.createElement('td');
+        const expensesDropdown = document.createElement('div');
+        expensesDropdown.className = 'expenses-dropdown';
+
+        if(selectedExpenses.length > 0) {
+            const span = document.createElement('span');
+            span.textContent = 'Expenses';
+            expensesDropdown.appendChild(span);
+        }
+
     }
     
 
