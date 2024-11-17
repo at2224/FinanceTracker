@@ -6,6 +6,7 @@ To do next:
 * Delete row in monthly chart
 
 Smaller changes:
+* Collapse SElect categories button once Amount input is clicked on
 * Make daily input field centered on page?
 * Move top tables closer together?
 * Separate budget calc metrics more

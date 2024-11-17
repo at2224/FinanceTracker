@@ -106,7 +106,7 @@ function updateBudgetDay() {
     const budgetMonthlyElement = document.getElementById('Budgetpermonth');
     const budgetDailyElement = document.getElementById('Budgetperday');
 
-    let num = parseFloat(budgetMonthlyElement.innerHTML) / (getDaysInMonth() + 1);
+    let num = parseFloat(budgetMonthlyElement.innerHTML) / getDaysInMonth();
     budgetDailyElement.textContent = num.toFixed(2);
 }
 
@@ -127,34 +127,86 @@ submitButton.addEventListener('click', () => {
         //stop function
         return; 
     }
-    else {
-        // get categories and amount
-        const currentDate = getCurrentDate();
+    
+    // get categories and amount
+    const currentDate = getCurrentDate();
 
-        const selectedExpenses = Array.from(expenseCheckboxes)
-        .filter(checkbox => checkbox.checked)
-        .map(checkbox => checkbox.value);
+    const selectedExpenses = Array.from(expenseCheckboxes)
+    .filter(checkbox => checkbox.checked)
+    .map(checkbox => checkbox.value);
 
-        const amount = parseFloat(dailyInputAmount.value) || 0;
-        
-        // create Date in monthly chart
-        const newRow = document.createElement('tr');
-        const dateCell = document.createElement('td');
-        dateCell.textContent = currentDate;
-        newRow.appendChild(dateCell);
+    const amount = parseFloat(dailyInputAmount.value) || 0;
+    
+    // create Date in monthly chart
+    const newRow = document.createElement('tr');
+    const dateCell = document.createElement('td');
+    dateCell.textContent = currentDate;
+    newRow.appendChild(dateCell);
 
-        // create Expense in monthly chart
-        const expensesCell = document.createElement('td');
-        const expensesDropdown = document.createElement('div');
-        expensesDropdown.className = 'expenses-dropdown';
+    // create Expense in monthly chart
+    const expensesCell = document.createElement('td');
+    const expensesDropdown = document.createElement('div');
+    expensesDropdown.className = 'expenses-dropdown';
 
-        if(selectedExpenses.length > 0) {
-            const span = document.createElement('span');
-            span.textContent = 'Expenses';
-            expensesDropdown.appendChild(span);
-        }
+    if(selectedExpenses.length > 0) {
+        const span = document.createElement('span');
+        span.textContent = 'Expenses';
+        expensesDropdown.appendChild(span);
 
+        const expensesContent = document.createElement('div');
+        expensesContent.className = 'expenses-dropdown-content';
+        selectedExpenses.forEach(expense => {
+            const expenseItem = document.createElement('p');
+            expenseItem.textContent = expense;
+            expensesContent.appendChild(expenseItem);
+        });
+        expensesDropdown.appendChild(expensesContent);
     }
+    else {
+        expensesDropdown.textContent = 'No expenses';
+    }
+
+    expensesCell.appendChild(expensesDropdown);
+    newRow.appendChild(expensesCell);
+
+    // Create Amount monthly chart
+    const amountCell = document.createElement('td');
+    amountCell.className = 'amount-cell';
+    amountCell.textContent = amount.toFixed(2);
+    newRow.appendChild(amountCell);
+
+    // Balance col
+    const balanceCell = document.createElement('td');
+    balanceCell.className = 'balance-cell';
+    const budgetPerDay = parseFloat(budgetDailyElement.textContent) || 0;
+
+    const previousRow = monthlyTableBody.lastElementChild;
+    let previousBalance = previousRow
+        ? parseFloat(previousRow.querySelector('.balance-cell').textContent) || 0
+        : budgetPerDay;
+    
+    const currentBalance = previousRow ? previousBalance - amount : budgetPerDay - amount;
+
+    balanceCell.textContent = currentBalance.toFixed(2);
+    newRow.appendChild(balanceCell);
+
+    monthlyTableBody.appendChild(newRow);
+
+    
+    // new column with delete button to delete row
+    const deleteCell = document.createElement('td');
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Delete';
+    
+    deleteButton.addEventListener('click', () => {
+        const rowToDelete = deleteButton.closest('tr');
+        if (rowToDelete) {
+            monthlyTableBody.removeChild(rowToDelete);
+        }
+    });
+    deleteCell.appendChild(deleteButton);
+    newRow.appendChild(deleteCell);
+    monthlyTableBody.appendChild(newRow);
     
 
 })
