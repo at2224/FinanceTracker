@@ -12,15 +12,16 @@ const dailyInputAmount = document.getElementById('daily-input-amount');
 const monthlyTableBody = document.getElementById('monthly-table-body');
 const expenseCheckboxes = document.querySelectorAll('.dropdown-content input[type="checkbox"]');
 
+// save inputted values whenever inputted
 function saveValue(input) {
     localStorage.setItem(input.id, input.value);
 }
-
 input1.forEach(input => {
     input.addEventListener('input', function() {
         saveValue(input);
     });
 });
+
 
 function loadSavedValues() {
     input1.forEach(input => {
@@ -33,6 +34,7 @@ function loadSavedValues() {
 
 loadSavedValues();
 
+// total calculation
 function updateTotal() {
     let totalAmount = 0;
 
@@ -42,7 +44,6 @@ function updateTotal() {
             totalAmount += value;
         }
     });
-
 
     const totalAmountCell = document.getElementById('total-amount');
     totalAmountCell.textContent = totalAmount.toFixed(2);
@@ -54,6 +55,7 @@ amountInputs.forEach(input => {
 
 updateTotal();
 
+// Update Budget / Month calculated metric
 function updateBudgetMonth() {
 
     let total = 0;
