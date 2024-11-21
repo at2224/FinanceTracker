@@ -1,7 +1,7 @@
 Brain dump
 
 To do next:
-* Finish adding expenses and amount to monthly chart
+* save monthly chart values
 * Edit expenses and amount column in monthly chart
 * Delete row in monthly chart
 

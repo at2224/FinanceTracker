@@ -6,7 +6,7 @@ const salaryAmountCell = document.getElementById('salary');
 const budgetDailyElement = document.getElementById('Budgetperday');
 const dropdownButton = document.querySelector('.dropdown-button');
 const dropdownContent = document.querySelector('.dropdown-content');
-const submitButton = document.querySelector('#input-section button');
+const submitButton = document.getElementById('submit-button');
 const dateDisplay = document.getElementById('date-display');
 const dailyInputAmount = document.getElementById('daily-input-amount');
 const monthlyTableBody = document.getElementById('monthly-table-body');
@@ -28,7 +28,7 @@ function loadSavedValues() {
         const savedValue = localStorage.getItem(input.id);
         if(savedValue !== null) {
             input.value= savedValue;
-        }
+        };
     });
 }
 
