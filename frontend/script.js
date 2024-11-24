@@ -11,6 +11,7 @@ const dateDisplay = document.getElementById('date-display');
 const dailyInputAmount = document.getElementById('daily-input-amount');
 const monthlyTableBody = document.getElementById('monthly-table-body');
 const expenseCheckboxes = document.querySelectorAll('.dropdown-content input[type="checkbox"]');
+const monthlyTable = document.getElementById('monthly-chart');
 
 // save inputted values whenever inputted
 function saveValue(input) {
@@ -21,6 +22,7 @@ input1.forEach(input => {
         saveValue(input);
     });
 });
+
 
 
 function loadSavedValues() {
@@ -212,3 +214,24 @@ submitButton.addEventListener('click', () => {
     
 
 })
+
+// save monthly table
+function saveMonthlyChart() {
+    const rowsData = [];
+    const rows = monthlyTableBody.querySelectorAll('tr');
+
+    rows.forEach(row => {
+        const cells = row.querySelectorAll('td');
+        const rowData = Array.from(cells).map(cell => cell.textContent.trim());
+        rowData.push(rowData);
+    });
+
+
+}
+
+const currentMonth = new Date().getMonth();
+localStorage.setItem('monthlyChart', JSON.stringify(rowsData));
+localStorage.setItem('chartMonth', currentMonth);
+//load monthly table saved data
+
+// add row with 'No expenses' if no daily input
