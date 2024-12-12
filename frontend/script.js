@@ -223,15 +223,64 @@ function saveMonthlyChart() {
     rows.forEach(row => {
         const cells = row.querySelectorAll('td');
         const rowData = Array.from(cells).map(cell => cell.textContent.trim());
-        rowData.push(rowData);
+        rowsData.push(rowData);
     });
 
+    localStorage.setItem('rowsData', JSON.stringify(rowsData));
+}           
 
+// load monthly data
+function loadMonthlyChart() {
+    const savedData = localStorage.getItem('rowsData');
+
+    if (savedData) {
+        const rowsData = JSON.parse(savedData);
+        rowsData.forEach(rowData => {
+            const row = document.createElement('tr');
+            rowData.forEach(cellData => {
+                const cell = document.createElement('td');
+                cell.textContent = cellData;
+                row.appendChild(cell);
+            });
+            monthlyTableBody.appendChild(row);
+        })
+    }
+}
+loadMonthlyChart();
+
+monthlyTableBody.addEventListener("input", () => {
+    saveMonthlyChart();
+
+})
+
+monthlyTableBody.addEventListener("click", event => {
+    if (event.target.matches(".delete-button")) {
+        saveMonthlyChart();
+    }
+});
+
+function removeMonthlyChart() {
+    const currentDate = new Date();
+    const currentDay = currentDate.getDate();
+    const currentMonth = currentDate.getMonth();
+    
+    const lastClearedMonth = localStorage.getItem('lastClearedMonth');
+
+    if (currentDay === 1 && lastClearedMonth != currentMonth) {
+        localStorage.removeItem('rowsData');
+        localStorage.setItem('lastClearedMonth', currentMonth);
+
+        if (monthlyTableBody) {
+            monthlyTableBody.innerHTML = '';
+        }
+    }
 }
 
-const currentMonth = new Date().getMonth();
-localStorage.setItem('monthlyChart', JSON.stringify(rowsData));
-localStorage.setItem('chartMonth', currentMonth);
+document.addEventListener('DOMContentLoaded', () => {
+    removeMonthlyChart();
+});
+
+
 //load monthly table saved data
 
 // add row with 'No expenses' if no daily input
