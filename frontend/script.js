@@ -212,6 +212,7 @@ submitButton.addEventListener('click', () => {
     newRow.appendChild(deleteCell);
     monthlyTableBody.appendChild(newRow);
     
+    saveMonthlyChart();
 
 })
 
@@ -235,6 +236,7 @@ function loadMonthlyChart() {
 
     if (savedData) {
         const rowsData = JSON.parse(savedData);
+        monthlyTableBody.innerHTML = '';
         rowsData.forEach(rowData => {
             const row = document.createElement('tr');
             rowData.forEach(cellData => {
@@ -246,7 +248,11 @@ function loadMonthlyChart() {
         })
     }
 }
-loadMonthlyChart();
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    loadMonthlyChart();
+})
 
 monthlyTableBody.addEventListener("input", () => {
     saveMonthlyChart();
@@ -281,6 +287,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-//load monthly table saved data
-
 // add row with 'No expenses' if no daily input
+
+
+// edit categories and value in monthly chart

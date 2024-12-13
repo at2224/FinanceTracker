@@ -1,9 +1,7 @@
 Brain dump
 
 To do next:
-* save monthly chart values
-* Edit expenses and amount column in monthly chart
-* Delete row in monthly chart
+* start backend - save raw data
 
 Smaller changes:
 * Collapse SElect categories button once Amount input is clicked on
@@ -12,6 +10,7 @@ Smaller changes:
 * Separate budget calc metrics more
 
 Medium changes: 
+* edit categories and value in monthly chart
 * make expenses and budget info collapsable?
 * Raw data sheet?
 
