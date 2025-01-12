@@ -1,0 +1,26 @@
+{
+  "name": "financetracker",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node --watch --experimental-strip-types --experimental-sqlite ./src/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "~ In progress ~",
+  "dependencies": {
+    "express": "^4.21.2",
+    "hasown": "^2.0.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/at2224/FinanceTracker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/at2224/FinanceTracker/issues"
+  },
+  "homepage": "https://github.com/at2224/FinanceTracker#readme"
+}
