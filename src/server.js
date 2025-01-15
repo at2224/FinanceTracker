@@ -15,10 +15,16 @@ app.use(express.json()); // middleware to parse json
 
 // serve html
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    res.sendFile(path.join(__dirname, '../public', 'index.html'));
+});
+
+app.use((req, res, next) => {
+    console.log(`${req.method} ${req.url}`);
+    next();
 });
 
 
+app.use('/api', rawDataRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server has started on port ${PORT}`);

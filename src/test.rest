@@ -1,0 +1,11 @@
+# save row
+
+POST http://localhost:5000/api/save
+Content-Type: application/json
+
+{
+    "date": "2044-02-01",
+    "expenses": "test",
+    "amount": 23,
+    "budget_balance": 1
+}
