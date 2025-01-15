@@ -6,10 +6,11 @@ import rawDataRoutes from './routes/rawDataRoutes.js';
 const app = express();
 const PORT = 5000;
 
-const __dirname = 'C:\\Users\\ariac\\Repos\\FinanceTracker';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 // static files. add to include styling
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.json()); // middleware to parse json
 
 // serve html
