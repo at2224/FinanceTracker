@@ -23,4 +23,16 @@ router.post('/save', async (req, res) => {
     }
 })
 
+router.get('/test', async (req, res) => {
+    try {
+        const result = await prisma.monthly_chart_data.findMany();
+        console.log(result); // Logs to the terminal
+        res.status(200).json(result); // Returns the data as a response
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).json({ error: 'Failed to retrieve data' });
+    }
+});
+
+
 export default router;
