@@ -15,13 +15,23 @@ router.post('/save', async (req, res) => {
                 budget_balance
             },
         });
-        res.sendStatus(201).json({message: "Data saved", data: tbl});
+        res.status(201).json({ message: "Data saved", data: tbl });
     }
     catch (err) {
         console.error(err.message);
-        res.sendStatus(500);
+        res.status(500).json({ error: "Internal Server Error" });
     }
 })
+
+router.get('/data', async (req, res) => {
+    try {
+        const data = await prisma.monthly_chart_data.findMany();
+        res.json(data);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+});
 
 router.get('/test', async (req, res) => {
     try {

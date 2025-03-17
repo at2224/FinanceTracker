@@ -1,7 +1,6 @@
 Brain dump
 
 To do next:
-* Fix monthly reset
 * save data
 
 Smaller changes:
