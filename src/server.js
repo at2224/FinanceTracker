@@ -2,12 +2,16 @@ import express from 'express'
 import path, {dirname} from 'path';
 import { fileURLToPath } from 'url';
 import rawDataRoutes from './routes/rawDataRoutes.js';
+import cors from 'cors';
 
 const app = express();
 const PORT = 5000;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+
+//middleware
+app.use(cors());
 
 // static files. add to include styling
 app.use(express.static(path.join(__dirname, '../public')));

@@ -124,7 +124,7 @@ dropdownButton.addEventListener('click', () => {
 });
 
 // when submit button is pressed...
-submitButton.addEventListener('click', () => {
+submitButton.addEventListener('click', async () => {
     console.log("clicked");
     // only submit if a value has been entered
     //if (dailyInputAmount === 0 || !Array.from(expenseCheckboxes).some(checkbox => checkbox.checked)) 
@@ -221,6 +221,30 @@ submitButton.addEventListener('click', () => {
     deleteCell.appendChild(deleteButton);
     newRow.appendChild(deleteCell);
     monthlyTableBody.appendChild(newRow);
+
+    // sending submitted data to db
+    try {
+        const dataToSend = {
+            date: currentDate,
+            expenses: selectedExpenses.join(', '),
+            amount: amount,
+            budget_balance: currentBalance 
+        };
+
+        // Send POST request to backend
+        const response = await fetch('http://localhost:5000/api/save', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(dataToSend)
+        });
+
+        if (!response.ok) throw new Error('Failed to save data');
+        
+        const result = await response.json();
+        console.log('Saved to database:', result);
+    } catch (error) {
+        console.error('Error saving data:', error);
+    }
 
     saveMonthlyChart();
 

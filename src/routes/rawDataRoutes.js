@@ -19,7 +19,7 @@ router.post('/save', async (req, res) => {
     }
     catch (err) {
         console.error(err.message);
-        res.status(500).json({ error: "Internal Server Error" });
+        res.sendStatus(500);
     }
 })
 
@@ -29,7 +29,7 @@ router.get('/data', async (req, res) => {
         res.json(data);
     } catch (err) {
         console.error(err.message);
-        res.status(500).json({ error: "Internal Server Error" });
+        res.sendStatus(500);
     }
 });
 

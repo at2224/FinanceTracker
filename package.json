@@ -13,6 +13,7 @@
   "description": "~ In progress ~",
   "dependencies": {
     "@prisma/client": "^6.2.1",
+    "cors": "^2.8.5",
     "express": "^4.21.2",
     "hasown": "^2.0.2",
     "pg": "^8.13.1",
