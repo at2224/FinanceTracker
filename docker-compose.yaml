@@ -4,7 +4,7 @@ services:
     build: .
     container_name: financetracker
     environment:
-      - DATABASE_URL=postgresql://postgres:postgres@db:5432/financetracker
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/financetracker?schema=public
       - NODE_ENV=development
     ports:
       - "5000:5000"
