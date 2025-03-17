@@ -314,8 +314,9 @@ monthlyTableBody.addEventListener("click", event => {
     if (event.target.tagName === 'BUTTON' && event.target.textContent === 'Delete') {
         const rowToDelete = event.target.closest('tr');
         if (rowToDelete) {
-            monthlyTableBody.removeChild(rowToDelete);
-            saveMonthlyChart(); 
+            console.log("Deleting row:", rowToDelete);
+            rowToDelete.remove();
+            saveMonthlyChart();
         }
     }
 });
