@@ -1,7 +1,9 @@
 Brain dump
 
 To do next:
-* start backend - save raw data
+* Fix submit button
+* Fix monthly reset
+* save data
 
 Smaller changes:
 * Collapse SElect categories button once Amount input is clicked on

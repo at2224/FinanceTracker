@@ -18,7 +18,7 @@ function saveValue(input) {
     localStorage.setItem(input.id, input.value);
 }
 input1.forEach(input => {
-    input.addEventListener('input', function() {
+    input.addEventListener('input', function () {
         saveValue(input);
     });
 });
@@ -28,8 +28,8 @@ input1.forEach(input => {
 function loadSavedValues() {
     input1.forEach(input => {
         const savedValue = localStorage.getItem(input.id);
-        if(savedValue !== null) {
-            input.value= savedValue;
+        if (savedValue !== null) {
+            input.value = savedValue;
         };
     });
 }
@@ -67,9 +67,9 @@ function updateBudgetMonth() {
         if (!isNaN(value)) {
             total += value;
         }
-    });  
+    });
 
-    const salaryAmount = Number(salaryAmountCell.value);  
+    const salaryAmount = Number(salaryAmountCell.value);
 
     const budgetmonthly = salaryAmount - total;
 
@@ -89,21 +89,21 @@ updateBudgetMonth();
 
 function getCurrentDate() {
     const today = new Date();
-    
+
     const day = String(today.getDate()).padStart(2, '0');  // Get the day, padded to 2 digits
     const month = String(today.getMonth() + 1).padStart(2, '0');  // Get the month (0-based, so add 1)
     const year = today.getFullYear();  // Get the year
 
-    return `${month}/${day}/${year}`;  
+    return `${month}/${day}/${year}`;
 }
 
-document.getElementById('date-display').textContent = getCurrentDate();  
+document.getElementById('date-display').textContent = getCurrentDate();
 
 //budget / day = budget / month /  (last day of month - first day of month + 1)
 
 function getDaysInMonth() {
     var now = new Date();
-    return new Date(now.getFullYear(), now.getMonth()+1, 0).getDate()
+    return new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate()
 }
 
 function updateBudgetDay() {
@@ -125,22 +125,23 @@ dropdownButton.addEventListener('click', () => {
 
 // when submit button is pressed...
 submitButton.addEventListener('click', () => {
+    console.log("clicked");
     // only submit if a value has been entered
-    if (dailyInputAmount === 0 || !Array.from(expenseCheckboxes).some(checkbox => checkbox.checked)
-    ) {
+    //if (dailyInputAmount === 0 || !Array.from(expenseCheckboxes).some(checkbox => checkbox.checked)) 
+    if (!dailyInputAmount.value || parseFloat(dailyInputAmount.value) === 0 || !Array.from(expenseCheckboxes).some(checkbox => checkbox.checked)) {
         //stop function
-        return; 
+        return;
     }
-    
+
     // get categories and amount
     const currentDate = getCurrentDate();
 
     const selectedExpenses = Array.from(expenseCheckboxes)
-    .filter(checkbox => checkbox.checked)
-    .map(checkbox => checkbox.value);
+        .filter(checkbox => checkbox.checked)
+        .map(checkbox => checkbox.value);
 
     const amount = parseFloat(dailyInputAmount.value) || 0;
-    
+
     // create Date in monthly chart
     const newRow = document.createElement('tr');
     const dateCell = document.createElement('td');
@@ -152,7 +153,7 @@ submitButton.addEventListener('click', () => {
     const expensesDropdown = document.createElement('div');
     expensesDropdown.className = 'expenses-dropdown';
 
-    if(selectedExpenses.length > 0) {
+    if (selectedExpenses.length > 0) {
         const span = document.createElement('span');
         span.textContent = 'Expenses';
         expensesDropdown.appendChild(span);
@@ -184,24 +185,32 @@ submitButton.addEventListener('click', () => {
     balanceCell.className = 'balance-cell';
     const budgetPerDay = parseFloat(budgetDailyElement.textContent) || 0;
 
+    // const previousRow = monthlyTableBody.lastElementChild;
+    // let previousBalance = previousRow
+    //     ? parseFloat(previousRow.querySelector('.balance-cell').textContent) || 0
+    //     : budgetPerDay;
     const previousRow = monthlyTableBody.lastElementChild;
-    let previousBalance = previousRow
-        ? parseFloat(previousRow.querySelector('.balance-cell').textContent) || 0
-        : budgetPerDay;
-    
+    let previousBalance;
+
+    if (previousRow && previousRow.querySelector('.balance-cell')) {
+        previousBalance = parseFloat(previousRow.querySelector('.balance-cell').textContent) || 0;
+    } else {
+        previousBalance = budgetPerDay;
+    }
+
     const currentBalance = previousRow ? previousBalance - amount : budgetPerDay - amount;
 
     balanceCell.textContent = currentBalance.toFixed(2);
     newRow.appendChild(balanceCell);
 
-    monthlyTableBody.appendChild(newRow);
+    //monthlyTableBody.appendChild(newRow);
 
-    
+
     // new column with delete button to delete row
     const deleteCell = document.createElement('td');
     const deleteButton = document.createElement('button');
     deleteButton.textContent = 'Delete';
-    
+
     deleteButton.addEventListener('click', () => {
         const rowToDelete = deleteButton.closest('tr');
         if (rowToDelete) {
@@ -211,7 +220,7 @@ submitButton.addEventListener('click', () => {
     deleteCell.appendChild(deleteButton);
     newRow.appendChild(deleteCell);
     monthlyTableBody.appendChild(newRow);
-    
+
     saveMonthlyChart();
 
 })
@@ -228,7 +237,7 @@ function saveMonthlyChart() {
     });
 
     localStorage.setItem('rowsData', JSON.stringify(rowsData));
-}           
+}
 
 // load monthly data
 function loadMonthlyChart() {
@@ -269,7 +278,7 @@ function removeMonthlyChart() {
     const currentDate = new Date();
     const currentDay = currentDate.getDate();
     const currentMonth = currentDate.getMonth();
-    
+
     const lastClearedMonth = localStorage.getItem('lastClearedMonth');
 
     if (currentDay === 1 && lastClearedMonth != currentMonth) {
