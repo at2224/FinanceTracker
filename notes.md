@@ -1,7 +1,6 @@
 Brain dump
 
 To do next:
-* Fix submit button
 * Fix monthly reset
 * save data
 

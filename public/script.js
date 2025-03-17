@@ -210,6 +210,7 @@ submitButton.addEventListener('click', () => {
     const deleteCell = document.createElement('td');
     const deleteButton = document.createElement('button');
     deleteButton.textContent = 'Delete';
+    deleteButton.className = 'delete-button';
 
     deleteButton.addEventListener('click', () => {
         const rowToDelete = deleteButton.closest('tr');
@@ -246,15 +247,51 @@ function loadMonthlyChart() {
     if (savedData) {
         const rowsData = JSON.parse(savedData);
         monthlyTableBody.innerHTML = '';
+        
         rowsData.forEach(rowData => {
             const row = document.createElement('tr');
-            rowData.forEach(cellData => {
-                const cell = document.createElement('td');
-                cell.textContent = cellData;
-                row.appendChild(cell);
-            });
+            
+            // Date cell
+            const dateCell = document.createElement('td');
+            dateCell.textContent = rowData[0];
+            row.appendChild(dateCell);
+            
+            // Expenses cell
+            const expensesCell = document.createElement('td');
+            expensesCell.textContent = rowData[1];
+            row.appendChild(expensesCell);
+            
+            // Amount cell
+            const amountCell = document.createElement('td');
+            amountCell.className = 'amount-cell';
+            amountCell.textContent = rowData[2];
+            row.appendChild(amountCell);
+            
+            // Balance cell
+            const balanceCell = document.createElement('td');
+            balanceCell.className = 'balance-cell';
+            balanceCell.textContent = rowData[3];
+            row.appendChild(balanceCell);
+            
+            // Delete button cell
+            const deleteCell = document.createElement('td');
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete';
+            deleteButton.className = 'delete-button';
+            
+            // deleteButton.addEventListener('click', () => {
+            //     const rowToDelete = deleteButton.closest('tr');
+            //     if (rowToDelete) {
+            //         monthlyTableBody.removeChild(rowToDelete);
+            //         saveMonthlyChart();
+            //     }
+            // });
+            
+            deleteCell.appendChild(deleteButton);
+            row.appendChild(deleteCell);
+            
             monthlyTableBody.appendChild(row);
-        })
+        });
     }
 }
 
@@ -268,9 +305,18 @@ monthlyTableBody.addEventListener("input", () => {
 
 })
 
+// monthlyTableBody.addEventListener("click", event => {
+//     if (event.target.matches(".delete-button")) {
+//         saveMonthlyChart();
+//     }
+// });
 monthlyTableBody.addEventListener("click", event => {
-    if (event.target.matches(".delete-button")) {
-        saveMonthlyChart();
+    if (event.target.tagName === 'BUTTON' && event.target.textContent === 'Delete') {
+        const rowToDelete = event.target.closest('tr');
+        if (rowToDelete) {
+            monthlyTableBody.removeChild(rowToDelete);
+            saveMonthlyChart(); 
+        }
     }
 });
 
@@ -278,18 +324,22 @@ function removeMonthlyChart() {
     const currentDate = new Date();
     const currentDay = currentDate.getDate();
     const currentMonth = currentDate.getMonth();
-
+    
     const lastClearedMonth = localStorage.getItem('lastClearedMonth');
-
-    if (currentDay === 1 && lastClearedMonth != currentMonth) {
+    const lastClearedMonthNumber = parseInt(lastClearedMonth);
+    
+    // Check if it's a new month AND we haven't cleared it yet
+    if (currentDay === 1 && lastClearedMonthNumber !== currentMonth) {
         localStorage.removeItem('rowsData');
-        localStorage.setItem('lastClearedMonth', currentMonth);
+        localStorage.setItem('lastClearedMonth', currentMonth.toString());
 
         if (monthlyTableBody) {
             monthlyTableBody.innerHTML = '';
         }
     }
 }
+
+removeMonthlyChart();
 
 document.addEventListener('DOMContentLoaded', () => {
     removeMonthlyChart();
