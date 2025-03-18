@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.post('/save', async (req, res) => {
     try {
-        const {date, expenses, amount, budget_balance} = req.body;
+        let {date, expenses, amount, budget_balance} = req.body;
         date = new Date(date).toISOString();
         const tbl = await prisma.monthly_chart_data.create({
             data: {
@@ -16,7 +16,6 @@ router.post('/save', async (req, res) => {
                 budget_balance: budget_balance
             },
         });
-        res.json(tbl);
         res.status(201).json({ message: "Data saved", data: tbl });
     }
     catch (err) {

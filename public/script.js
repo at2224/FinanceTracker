@@ -223,9 +223,12 @@ submitButton.addEventListener('click', async () => {
     monthlyTableBody.appendChild(newRow);
 
     // sending submitted data to db
+    const dateParts = currentDate.split('/');
+    const formattedDate = new Date(dateParts[2], dateParts[0] - 1, dateParts[1]).toISOString();
+
     try {
         const dataToSend = {
-            date: currentDate,
+            date: formattedDate,
             expenses: selectedExpenses.join(', '),
             amount: amount,
             budget_balance: currentBalance 
@@ -237,13 +240,17 @@ submitButton.addEventListener('click', async () => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(dataToSend)
         });
-
-        if (!response.ok) throw new Error('Failed to save data');
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`Failed to save data: ${response.status} - ${errorText}`);
+        }
+    
         
-        const result = await response.json();
+        const result = await response.json().catch(() => null);
         console.log('Saved to database:', result);
     } catch (error) {
-        console.error('Error saving data:', error);
+        console.error("Detailed error:", err);
+        res.status(500).json({ error: err.message });
     }
 
     saveMonthlyChart();
