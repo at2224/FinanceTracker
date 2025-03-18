@@ -1,10 +1,10 @@
 Brain dump
 
 To do next:
-* save data
+* delete data
 
 Smaller changes:
-* Collapse SElect categories button once Amount input is clicked on
+* Collapse Select categories button once Amount input is clicked on
 * Make daily input field centered on page?
 * Move top tables closer together?
 * Separate budget calc metrics more
