@@ -10,3 +10,5 @@ To use:
 
 Refreshes at the new month but lifetime data is available in api route using:
 http://localhost:5000/api/data
+
+Tools used: HTML, CSS, JS, NodeJS, Express, PostgresSQL, Docker, Prisma 
